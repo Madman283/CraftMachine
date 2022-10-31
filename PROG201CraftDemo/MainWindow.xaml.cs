@@ -64,7 +64,13 @@ namespace PROG201CraftDemo
                 //get player input
                 string n = ConsoleInput.Text;
                 //Convert string to int
-                int i = Convert.ToInt32(n);
+                //int i = Convert.ToInt32(n);
+
+                if(!Int32.TryParse(n, out int i)) return;
+
+                
+
+
                 //-1 from the int
                 int recipeNumber = i--;
 
@@ -104,7 +110,10 @@ namespace PROG201CraftDemo
                             }
                         }
                     }
+                    ConsoleOutput.Text = $"{workshop.player.Name} has created {recipe.Name}";
                     workshop.player.Inventory.Add(new Item() { Name = recipe.Name });
+
+                    RefreshInformationDisplays();
                 }
                 else
                 {
