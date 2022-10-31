@@ -68,11 +68,9 @@ namespace PROG201CraftDemo
 
                 if(!Int32.TryParse(n, out int i)) return;
 
-                
-
 
                 //-1 from the int
-                int recipeNumber = i--;
+                int recipeNumber = --i;
 
                 //get recipe from that number
                 Recipe recipe = new Recipe();
@@ -172,6 +170,11 @@ namespace PROG201CraftDemo
             ConsoleOutput.Text = output;
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SetUp = true;
+            Crafting = false;
+            ShowMenu();
+        }
     }
 }

@@ -12,6 +12,8 @@
         <TextBlock x:Name="ConsoleOutput" HorizontalAlignment="Left" Height="347" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="434" Background="White"/>
         <TextBox x:Name="ConsoleInput" HorizontalAlignment="Left" Height="37" Margin="10,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="357"/>
         <Button x:Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="384,366,0,0" VerticalAlignment="Top" Click="Submit_Click" Height="28" Width="60"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="719,399,0,0" VerticalAlignment="Top" Width="64" Click="Button_Click"/>
+
 
     </Grid>
 </Window>
