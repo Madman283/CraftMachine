@@ -9,11 +9,14 @@ namespace PROG201CraftDemo
 {
     internal class Workshop
     {
-        List<Recipe> Recipes = new List<Recipe>();
-        Player player = new Player() {Inventory = new List<Item> 
+        public List<Recipe> Recipes = new List<Recipe>();
+        public Player player = new Player() {Inventory = new List<Item> 
         { 
             new Item() {Name="Chocolate", Amount = 3, AmountType = "pound(s)"},
-            new Item() {Name="Water", Amount = 10, AmountType = "cup(s)"}
+            new Item() {Name="Water", Amount = 10, AmountType = "cup(s)"},
+            new Item() {Name = "Powdered Sugar", Amount = 1, AmountType="cup" },
+            new Item() {Name = "Vanilla Extract", Amount = 1.5, AmountType="tsp" },
+            new Item() {Name = "Milk", Amount = 2, AmountType="tbsp" }
              } };
         Person vendor = new Person();
 
@@ -54,6 +57,34 @@ namespace PROG201CraftDemo
                 {
                     Name = "Cake Batter",
                     Description = "Batter that can be used to make cake.",
+                    Requirements = new List<Item>()
+                    {
+                        new Item(){Name = "Sugar", Amount = 1, AmountType="cup" },
+                        new Item(){Name = "Flour", Amount = 3, AmountType="cup" },
+                        new Item(){Name = "Eggs", Amount = 2, AmountType="unit" }
+                    },
+
+                }
+                );
+            Recipes.Add(
+                new Recipe()
+                {
+                    Name = "Chocolate Milk",
+                    Description = "Tasty milk!",
+                    Requirements = new List<Item>()
+                    {
+                        new Item(){Name = "Sugar", Amount = 1, AmountType="cup" },
+                        new Item(){Name = "Flour", Amount = 3, AmountType="cup" },
+                        new Item(){Name = "Eggs", Amount = 2, AmountType="unit" }
+                    },
+
+                }
+                );
+            Recipes.Add(
+                new Recipe()
+                {
+                    Name = "Ice Cream",
+                    Description = "What a tasty treat!",
                     Requirements = new List<Item>()
                     {
                         new Item(){Name = "Sugar", Amount = 1, AmountType="cup" },

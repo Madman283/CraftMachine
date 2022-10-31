@@ -23,6 +23,7 @@ namespace PROG201CraftDemo
     {
         Workshop workshop = new Workshop();
         bool SetUp = true;
+        bool Crafting = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -58,43 +59,96 @@ namespace PROG201CraftDemo
                 ConsoleInput.Text = "";
                 return;
             }
-            
-            
-            switch(ConsoleInput.Text)
+            else if (Crafting)
             {
-                case "1":
-                    ConsoleOutput.Text = workshop.AllowCrafting();
-                        //get player input
-                        //Convert string to int
-                        //-1 from the int
-                        //get recipe from that number
-                        //get recipe requirements
-                        //check player inventory for required items
-                        //check if player has equal or greater amount for each requirement
-                        //if player meets requirements, allow craft
-                        //when crafted, subtract the amount of required materials from player inventory
-                        //place crafted item into player inventory
-                        //Print to the player they have crafted
-                        //Print how much materials they have left
+                //get player input
+                string n = ConsoleInput.Text;
+                //Convert string to int
+                int i = Convert.ToInt32(n);
+                //-1 from the int
+                int recipeNumber = i--;
+
+                //get recipe from that number
+                Recipe recipe = new Recipe();
+                //get recipe requirements
+                bool hasR = false;
+                recipe = workshop.Recipes[recipeNumber];
+                //check player inventory for required items
+                foreach (var ingredient in recipe.Requirements)
+                {
+                    foreach (var item in workshop.player.Inventory)
+                    {
+                        if (ingredient.Name == item.Name && ingredient.Amount >= item.Amount)
+                        {
+                            hasR = true;
+
+
+                        }
+                        else
+                        {
+                            hasR = false;
+                        }
+                    }
+                }
+                //check if player has equal or greater amount for each requirement
+                //if player meets requirements, allow craft
+                if (hasR == true)
+                {
+                    foreach (var ingredient in recipe.Requirements)
+                    {
+                        foreach (var item in workshop.player.Inventory)
+                        {
+                            if (ingredient.Name == item.Name)
+                            {
+                                item.Amount = item.Amount - ingredient.Amount;
+                            }
+                        }
+                    }
+                    workshop.player.Inventory.Add(new Item() { Name = recipe.Name });
+                }
+                else
+                {
+                    ConsoleOutput.Text = "Hey!\nYou do not have the items you need..";
+                    //what would happen if they did not have items needed.
+                }
+                //when crafted, subtract the amount of required materials from player inventory
+                
+                //place crafted item into player inventory
+                //Print to the player they have crafted
+                //Print how much materials they have left
+            }
+            else
+            {
+                switch (ConsoleInput.Text)
+                {
+                    case "1":
+                        Crafting = true;
+                        ConsoleOutput.Text = workshop.AllowCrafting();
+
+                        
                         //allow player to go back to the menu
-                    Pause();
-                    break;
-                case "2":
-                    ConsoleOutput.Text = workshop.Trade();
-                    Pause();
-                    break;
-                case "3":
-                    ConsoleOutput.Text = workshop.ShowRecipes();
-                    Pause();
-                    break;
-                case "m":
-                    ShowMenu();
-                    break;
-                default:
-                    ConsoleOutput.Text += "Please enter only 1, 2, or 3.\n";
-                    break;
+                        Pause();
+                        break;
+                    case "2":
+                        ConsoleOutput.Text = workshop.Trade();
+                        Pause();
+                        break;
+                    case "3":
+                        ConsoleOutput.Text = workshop.ShowRecipes();
+                        Pause();
+                        break;
+                    case "m":
+                        ShowMenu();
+                        break;
+                    default:
+                        ConsoleOutput.Text += "Please enter only 1, 2, or 3.\n";
+                        break;
+
+                }
 
             }
+            
+            
 
             ConsoleInput.Text = "";
         }
