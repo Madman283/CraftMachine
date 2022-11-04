@@ -10,6 +10,15 @@ namespace PROG201CraftDemo
     internal class Workshop
     {
         public List<Recipe> Recipes = new List<Recipe>();
+        //public List<Item> Items = new List<Item>
+        //{
+        //    new Item() {Name="Chocolate", Cost = 2},
+        //    new Item() {Name="Water", Cost = 1},
+        //    new Item() {Name = "Powdered Sugar", Cost = 5},
+        //    new Item() {Name = "Vanilla Extract", Cost = 10 },
+        //    new Item() {Name = "Milk", Cost = 4}
+        //};
+
         public Player player = new Player() {Inventory = new List<Item> 
         { 
             new Item() {Name="Chocolate", Amount = 3, AmountType = "pound(s)"},
@@ -18,7 +27,18 @@ namespace PROG201CraftDemo
             new Item() {Name = "Vanilla Extract", Amount = 1.5, AmountType="tsp" },
             new Item() {Name = "Milk", Amount = 2, AmountType="tbsp" }
              } };
-        Person vendor = new Person();
+        
+        public Player vendor = new Player()
+        {
+            Inventory = new List<Item>
+        {
+            new Item() {Name="Chocolate", Amount = 3, AmountType = "pound(s)", Cost = 2},
+            new Item() {Name="Water", Amount = 10, AmountType = "cup(s)", Cost = 2},
+            new Item() {Name = "Powdered Sugar", Amount = 1, AmountType="cup", Cost = 2 },
+            new Item() {Name = "Vanilla Extract", Amount = 1.5, AmountType="tsp", Cost = 2 },
+            new Item() {Name = "Milk", Amount = 2, AmountType="tbsp", Cost = 2 }
+             }
+        };
 
         public Workshop()
         {
@@ -98,29 +118,18 @@ namespace PROG201CraftDemo
         public string CreateNewItem()
         {
             string output = "What would you like to craft?\n";
-            //output += $" 1: Cake Batter, 2: Whipped Cream, 3: Powdered Sugar Icing \n";
+            
             output += ShowRecipeNames();
-            //switch (ConsoleInput.Text)
-            //{
-            //    case "1"
-            //    default:
-            //        break;
-            //}
-            //return output;
-
-            //if (true)
-            //{
-
-            //}
+      
             return output;
 
             
 
         }
-        public string Trade()
-        {
-            return "\nTrade is not yet functional.\n";
-        }
+        //public string Trade()
+        //{
+        //    return "\nTrade is not yet functional.\n";
+        //}
         public string ShowRecipes()
         {
             string output = "Recipes:\n";
@@ -157,20 +166,24 @@ namespace PROG201CraftDemo
         public string AllowCrafting()
         {
             string output = "What would you like to craft?\n";
-            //output += $" 1: Cake Batter, 2: Whipped Cream, 3: Powdered Sugar Icing \n";
             output += ShowRecipeNames();
-            //switch (ConsoleInput.Text)
-            //{
-            //    case "1"
-            //    default:
-            //        break;
-            //}
-            //return output;
+           
+            return output;
+        }
 
-            //if (true)
-            //{
-
-            //}
+        public string AllowTrade()
+        {
+            int number = 1;
+            string output = "Items:\n";
+            foreach (Item i in vendor.Inventory)
+            {
+                if (i.Amount > 0)
+                {
+                    output += $"  {number} {i.Name} {i.Amount} {i.Cost.ToString("c")}\n";
+                    number++;
+                }
+                
+            }
             return output;
         }
 

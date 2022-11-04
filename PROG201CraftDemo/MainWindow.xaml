@@ -9,10 +9,13 @@
     <Grid x:Name="MainGrid" Background="#FFF1F1F1" Loaded="MainGrid_Loaded">
         <TextBlock x:Name="PlayerName" HorizontalAlignment="Left" Height="34" Margin="474,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" Background="White"/>
         <TextBlock x:Name="PlayerInventory" HorizontalAlignment="Left" Height="250" Margin="474,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" Background="White"/>
-        <TextBlock x:Name="ConsoleOutput" HorizontalAlignment="Left" Height="347" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="434" Background="White"/>
+        <ScrollViewer Height="347" Margin="10,10,356,76" Width="434" Background="White" VerticalScrollBarVisibility ="Auto">
+            
+            <TextBlock x:Name="ConsoleOutput" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Background="White"/>
+        </ScrollViewer>
         <TextBox x:Name="ConsoleInput" HorizontalAlignment="Left" Height="37" Margin="10,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="357"/>
         <Button x:Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="384,366,0,0" VerticalAlignment="Top" Click="Submit_Click" Height="28" Width="60"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="719,399,0,0" VerticalAlignment="Top" Width="64" Click="Button_Click"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="474,324,0,0" VerticalAlignment="Top" Width="64" Click="Button_Click"/>
 
 
     </Grid>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -24,6 +26,7 @@ namespace PROG201CraftDemo
         Workshop workshop = new Workshop();
         bool SetUp = true;
         bool Crafting = false;
+        bool Trading = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -58,6 +61,40 @@ namespace PROG201CraftDemo
                 RefreshInformationDisplays();
                 ConsoleInput.Text = "";
                 return;
+            }
+            else if (Trading)
+            {
+
+
+                string n = ConsoleInput.Text;
+
+                if (!Int32.TryParse(n, out int i)) return;
+
+                int itemNumber = --i;
+
+                if (workshop.player.Currency >= workshop.vendor.Inventory[itemNumber].Cost)
+                {
+                    foreach (var merch in workshop.player.Inventory)
+                    {
+                        if (workshop.vendor.Inventory[itemNumber].Name == merch.Name)
+                        {
+                            if (workshop.vendor.Inventory[itemNumber].Amount >= 1)
+                            {
+                                merch.Amount++;
+                                workshop.vendor.Inventory[itemNumber].Amount--;
+                                workshop.player.Currency -= workshop.vendor.Inventory[itemNumber].Cost;
+                                workshop.vendor.Currency += workshop.vendor.Inventory[itemNumber].Cost;
+                            }
+                            
+                            
+                        }
+                    }
+                }
+
+                RefreshInformationDisplays();
+                ConsoleOutput.Text = workshop.AllowTrade();
+
+
             }
             else if (Crafting)
             {
@@ -109,8 +146,7 @@ namespace PROG201CraftDemo
                         }
                     }
                     ConsoleOutput.Text = $"{workshop.player.Name} has created {recipe.Name}";
-                    workshop.player.Inventory.Add(new Item() { Name = recipe.Name });
-
+                    workshop.player.Inventory.Add(new Item() { Name = recipe.Name, Amount = 1});
                     RefreshInformationDisplays();
                 }
                 else
@@ -137,7 +173,8 @@ namespace PROG201CraftDemo
                         Pause();
                         break;
                     case "2":
-                        ConsoleOutput.Text = workshop.Trade();
+                        Trading = true;
+                        ConsoleOutput.Text = workshop.AllowTrade();
                         Pause();
                         break;
                     case "3":
@@ -172,8 +209,9 @@ namespace PROG201CraftDemo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SetUp = true;
+            
             Crafting = false;
+            Trading = false;
             ShowMenu();
         }
     }
