@@ -10,14 +10,7 @@ namespace PROG201CraftDemo
     internal class Workshop
     {
         public List<Recipe> Recipes = new List<Recipe>();
-        //public List<Item> Items = new List<Item>
-        //{
-        //    new Item() {Name="Chocolate", Cost = 2},
-        //    new Item() {Name="Water", Cost = 1},
-        //    new Item() {Name = "Powdered Sugar", Cost = 5},
-        //    new Item() {Name = "Vanilla Extract", Cost = 10 },
-        //    new Item() {Name = "Milk", Cost = 4}
-        //};
+       
 
         public Player player = new Player() {Inventory = new List<Item> 
         { 
@@ -25,7 +18,9 @@ namespace PROG201CraftDemo
             new Item() {Name="Water", Amount = 10, AmountType = "cup(s)"},
             new Item() {Name = "Powdered Sugar", Amount = 1, AmountType="cup" },
             new Item() {Name = "Vanilla Extract", Amount = 1.5, AmountType="tsp" },
-            new Item() {Name = "Milk", Amount = 2, AmountType="tbsp" }
+            new Item() {Name = "Milk", Amount = 2, AmountType="tbsp" },
+            new Item() {Name = "Flour", Amount = 3, AmountType="cup"},
+            new Item() {Name = "Eggs", Amount = 3, AmountType="unit"}
              } };
         
         public Player vendor = new Player()
@@ -36,7 +31,10 @@ namespace PROG201CraftDemo
             new Item() {Name="Water", Amount = 10, AmountType = "cup(s)", Cost = 2},
             new Item() {Name = "Powdered Sugar", Amount = 1, AmountType="cup", Cost = 2 },
             new Item() {Name = "Vanilla Extract", Amount = 1.5, AmountType="tsp", Cost = 2 },
-            new Item() {Name = "Milk", Amount = 2, AmountType="tbsp", Cost = 2 }
+            new Item() {Name = "Milk", Amount = 2, AmountType="tbsp", Cost = 2 },
+            new Item() {Name = "Sugar", Amount = 4, AmountType="cup", Cost= 2 },
+            new Item(){Name = "Flour", Amount = 3, AmountType="cup", Cost= 2 },
+            new Item(){Name = "Eggs", Amount = 2, AmountType="unit", Cost= 2 }
              }
         };
 

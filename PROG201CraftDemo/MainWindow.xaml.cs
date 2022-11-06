@@ -119,9 +119,18 @@ namespace PROG201CraftDemo
                 {
                     foreach (var item in workshop.player.Inventory)
                     {
-                        if (ingredient.Name == item.Name && ingredient.Amount >= item.Amount)
+                        if (ingredient.Name == item.Name)
                         {
-                            hasR = true;
+                            if (item.Amount >= ingredient.Amount)
+                            {
+                                hasR = true;
+
+                            }
+                            else
+                            {
+                                hasR = false;
+                            }
+                            
 
 
                         }
