@@ -20,6 +20,13 @@ namespace PROG201CraftDemo
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+    /* Craft Project made by Brandon Figueroa.
+     * 11/6/22
+     * 
+     * Credit to Jenell Baxter AKA my teacher, helped me create most of the coding done in this project.
+     * Credit to Duncan McDonald, helped me create a button for the player to be able to go back to the main menu.
+     */
   
     public partial class MainWindow : Window
     {
