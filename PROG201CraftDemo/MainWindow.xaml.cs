@@ -143,7 +143,7 @@ namespace PROG201CraftDemo
                         }
                         else
                         {
-                            hasR = false;
+                            //hasR = false;
                         }
                     }
                 }
